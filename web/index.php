@@ -1,28 +1,20 @@
 <?php
 
 
-$connection = new MongoClient(getenv('MONGOLAB_URL1'));
-$db = $connection->selectDB(getenv('MONGOLAB_DB1'));
-$col = $db->selectCollection(getenv('MONGOLAB_COL1'));
-
-
-
-$docs = $col->find();
-// var_dump($connection);
-// echo "<br>";
-// var_dump($db);
-// echo "<br>";
-// var_dump($col);
-// echo "<br>";
-// var_dump($docs);
-foreach ($docs as $id => $obj) {
-    print "<pre>";
-    print var_dump($obj);
-    print "</pre><hr>";
-}
-
-
-exit;
+// $connection = new MongoClient(getenv('MONGOLAB_URL1'));
+// $db = $connection->selectDB(getenv('MONGOLAB_DB1'));
+// $col = $db->selectCollection(getenv('MONGOLAB_COL1'));
+//
+// $docs = $col->find();
+//
+//
+// foreach ($docs as $id => $obj) {
+//     print "<pre>";
+//     print var_dump($obj);
+//     print "</pre><hr>";
+// }
+//
+// exit;
 
 require('../vendor/autoload.php');
 
@@ -38,7 +30,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 
 $app->get('/', function() use($app) {
   $app['monolog']->addDebug('logging output.');
-  return 'Hellob aaa';
+  return 'Hello!!';
 });
 
 $app->run();
