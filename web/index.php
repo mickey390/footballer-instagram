@@ -1,7 +1,7 @@
 <?php
 echo "hello!";
 // phpinfo();
-exit;
+// exit;
  $mongo_url = parse_url(getenv("MONGO_URL"));
 $dbname = str_replace("/", "", $mongo_url["path"]);
 

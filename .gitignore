@@ -2,6 +2,3 @@ vendor/
 .env
 .DS_Store
 composer.phar
-
-!./vendor/heroku/heroku-buildpack-php/conf/php/php.ini
-
