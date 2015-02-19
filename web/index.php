@@ -1,10 +1,10 @@
 <?php
 
 
-$connection = new MongoClient(getenv('MONGOLAB_URI'));
+$connection = new Mongo(getenv('MONGOLAB_URI'));
 $db = $connection->selectDB(getenv('MONGOLAB_DB1'));
 $col = $db->selectCollection(getenv('MONGOLAB_COL1'));
-//
+
 $docs = $col->find();
 //
 //
