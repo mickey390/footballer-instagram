@@ -1,6 +1,6 @@
 <?php
 
-$connection = new Mongo(getenv('MONGOLAB_URI'));
+$connection = new Mongo(getenv('MONGOLAB_URL1'));
 $db = $connection->selectDB(getenv('MONGOLAB_DB1'));
 $col = $db->selectCollection(getenv('MONGOLAB_COL1'));
 
