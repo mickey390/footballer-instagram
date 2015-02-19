@@ -1,20 +1,20 @@
 <?php
 
 
-// $connection = new MongoClient(getenv('MONGOLAB_URL1'));
-// $db = $connection->selectDB(getenv('MONGOLAB_DB1'));
-// $col = $db->selectCollection(getenv('MONGOLAB_COL1'));
+$connection = new MongoClient(getenv('MONGOLAB_URI'));
+$db = $connection->selectDB(getenv('MONGOLAB_DB1'));
+$col = $db->selectCollection(getenv('MONGOLAB_COL1'));
 //
-// $docs = $col->find();
+$docs = $col->find();
 //
 //
-// foreach ($docs as $id => $obj) {
-//     print "<pre>";
-//     print var_dump($obj);
-//     print "</pre><hr>";
-// }
-//
-// exit;
+foreach ($docs as $id => $obj) {
+    print "<pre>";
+    print var_dump($obj);
+    print "</pre><hr>";
+}
+
+exit;
 
 require('../vendor/autoload.php');
 
