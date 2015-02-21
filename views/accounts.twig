@@ -1,0 +1,46 @@
+{% extends "base.twig" %}
+{% block content %}
+
+     <div class="starter-template ">
+        <div>
+        {% for account in accounts %}
+                {% if account.profile_picture is defined and account.account is defined %}
+            <div class="text-center col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                <div class="img_box2">
+                <p class="img_comment4">{{ account.name_org }}</p>
+                    <a target="_blank" href="https://instagram.com/{{account.account}}">
+                        <img  src="{{account.profile_picture}}">
+                    </a>
+              
+
+                </div>
+            </div>
+                {% endif %}
+
+        {% else %}
+            No more account...
+        {% endfor %}
+        </div>
+        <div class="col-xs-12">
+
+            <nav>
+              <ul class="pager">
+
+                <!-- <li class="previous disabled"> -->
+                <li class="previous">
+                    <a href="/accounts/{{ app.request.attributes.get('_route_params')['page']-1 }}"><span aria-hidden="true">&larr;</span> Back </a>
+                </li>
+
+                <li class="next">
+                    <a href="/accounts/{{ app.request.attributes.get('_route_params')['page']+1 }}"> Next <span aria-hidden="true">&rarr;</span></a>
+                </li>
+
+              </ul>
+            </nav>
+        </div>
+    </div>
+    
+
+{% endblock %}
+
+
