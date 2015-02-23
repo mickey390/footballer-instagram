@@ -10,7 +10,6 @@ class InstagramAccounts extends InstagramBase
     }
 
     public function setCollection(){
-        // exit;
         if($this->isLocal){
             // 開発環境
             $this->col = $this->db->selectCollection(LocalEnv::MONGO_LAB_COL1);
@@ -27,8 +26,7 @@ class InstagramAccounts extends InstagramBase
         $limit = 24;
         $skip = ($offset-1) * $limit;
 
-        $docs = $this->col->find()->skip($skip)->limit($limit);
-
+        $docs = $this->col->find(array("id" => array('$exists' => true)))->skip($skip)->limit($limit);
 
         return $docs;
 
