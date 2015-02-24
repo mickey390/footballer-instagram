@@ -3,7 +3,7 @@
 
     {% for post in posts %}
 
-    <div class="text-center col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div  class="text-center col-xs-12 col-sm-6 col-md-4 col-lg-3">
 
         <div class="img_box1">
             <p class="img_comment1">{{post.user.fullname}}</p>
@@ -11,8 +11,41 @@
                 <img  src="{{post.post.imageUrl}}" width="300px">
             </a>
         </div>
+
     </div>
 
     {% endfor %}
+
+    <!-- load event -->
+    <script type="text/javascript">
+    $(function(){
+        $(window).scroll(function() {
+             var current = $(window).scrollTop() + window.innerHeight;
+             if (current < $(document).height() - 50) return; // 最下部でなければ抜ける
+             if ($(this).data('loading')) return; // ロード中は抜ける
+            
+             $(this).data('loading', true); // ロード中にする
+                $.ajax({
+                  type: 'GET',
+                  url: 'api/posts',
+                  datatype: 'json',
+                  success: function(json){
+                    $.each(json, function(i, item){
+                      var addHtml = '<div  class="text-center col-xs-12 col-sm-6 col-md-4 col-lg-3"><div class="img_box1"><p class="img_comment1">'+item.user.fullname+'</p><a target="_blank" href="'+item.post.link+'"><img  src="'+item.post.imageUrl+'" width="300px"></a></div></div>';
+                      $("#content").append(addHtml);
+                    });
+                  }
+                });
+                setTimeout(function() {
+                    $(this).data('loading', false); // 処理が終わったらフラグをたおす
+                  }, 3000);
+             
+        });
+    });
+    </script>
+
+
+
+
 
 {% endblock %}

@@ -9,6 +9,7 @@ require('../class/InstagramPosts.class.php');
 $app = new Silex\Application();
 $app['debug'] = true;
 
+
 // Register the monolog logging service
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
   'monolog.logfile' => 'php://stderr',
@@ -25,12 +26,9 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->get('/', function() use($app) {
     // $app['monolog']->addDebug('logging output.');
-    
     $instagram = new InstagramPosts();
     $instagram->setCollection();
     $posts = $instagram->getPostData($page);
-
-    // var_dump($posts);
 
     return $app['twig']->render('index.twig', array(
         'posts' => $posts,
@@ -39,6 +37,14 @@ $app->get('/', function() use($app) {
 
 });
 
+$app->get('/api/posts', function () use($app) {
+
+    $instagram = new InstagramPosts();
+    $instagram->setCollection();
+    $posts = $instagram->getPostData($page);
+
+    return $app->json($posts, 201);
+});
 
 
 $app->get('/accounts/{page}', function ($page) use ($app) {
