@@ -28,7 +28,7 @@ $app->get('/', function() use($app) {
     // $app['monolog']->addDebug('logging output.');
     $instagram = new InstagramPosts();
     $instagram->setCollection();
-    $posts = $instagram->getPostData($page);
+    $posts = $instagram->getPostData();
 
     return $app['twig']->render('index.twig', array(
         'posts' => $posts,
